@@ -1,3 +1,5 @@
+#view/console_view.py
+
 class ConsoleView:
     """
     Vue console pour l'affichage ASCII du plateau et la saisie des coups.

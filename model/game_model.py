@@ -1,3 +1,5 @@
+#model/game_model.py
+
 import chess
 
 class GameModel:
