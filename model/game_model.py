@@ -47,3 +47,26 @@ class GameModel:
     def result(self):
         """Retourne le résultat si la partie est finie (ex: '1-0')."""
         return self.board.result()
+
+    def get_legal_moves_for_color(self, color: str):
+        """
+        Retourne une liste des coups légaux pour une couleur donnée.
+        :param color: 'white' ou 'black'
+        :return: liste de coups au format SAN (ex: ['e4', 'Nf3', ...])
+        """
+        if color not in ('white', 'black'):
+            raise ValueError("Couleur invalide, doit être 'white' ou 'black'")
+
+        # Sauvegarde de l'état actuel
+        original_turn = self.board.turn
+
+        # Force le tour à la couleur demandée pour obtenir les coups légaux
+        self.board.turn = (color == 'white')
+        legal_moves = list(self.board.legal_moves)
+        san_moves = [self.board.san(move) for move in legal_moves]
+
+        # Restaure le tour original
+        self.board.turn = original_turn
+
+        return san_moves
+

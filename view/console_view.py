@@ -1,20 +1,15 @@
-#view/console_view.py
+# view/console_view.py
+from .base_view import View
 
-class ConsoleView:
-    """
-    Vue console pour l'affichage ASCII du plateau et la saisie des coups.
-    """
-    @staticmethod
-    def render_board(board):
+class ConsoleView(View):
+    def render_board(self, board):
         """Affiche le plateau en ASCII avec bordures."""
         print(board.unicode(borders=True))
 
-    @staticmethod
-    def prompt_move():
+    def prompt_move(self) -> str:
         """Invite l'utilisateur à entrer un coup en SAN."""
         return input("🔸 Ton coup : ").strip()
 
-    @staticmethod
-    def show_message(message):
+    def show_message(self, message: str):
         """Affiche un message quelconque à l'utilisateur."""
         print(message)
