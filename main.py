@@ -26,14 +26,14 @@ def main():
             clock_increment=5   # 5 secondes par coup
         )
         """
-        
+        """
         controller.open_seek(
             clock_limit=600,    # 10 minutes
             clock_increment=5,  # 5 secondes par coup
             rated=False,         # Partie non classée
             variant="standard"  # Variante standard
         )
-
+        """
         # Attente du début de partie
         controller.wait_for_start()
 

@@ -48,7 +48,7 @@ class GameController:
             resp = self.service.challenge_user(
                 username, clock_limit, clock_increment, rated
             )
-            id, self.game_url = self.service.extract_game_info(resp)
+            self.game_id, self.game_url = self.service.extract_game_info(resp)
             self.view.show_message(f"👤 Défi utilisateur lancé → {self.game_url}")
         except Exception as e:
             self.view.show_message(f"❌ Erreur défi utilisateur : {e}")
@@ -77,7 +77,6 @@ class GameController:
             if ev_type == "challengeCreated":
                 self.view.show_message("ℹ️ Défi enregistré, en attente...")
             elif ev_type == "gameStart":
-                real_game_id = ev["game"]["id"]
                 self.user_color = self.get_player_color_from_event(ev, "zeryzez")
                 self.view.show_message(f"✅ Partie démarrée ! ID={self.game_id}")
                 self.view.show_message(f"🟢 Tu joues {self.user_color.upper()}.")
